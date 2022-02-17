@@ -1,0 +1,8 @@
+# CodeQL compilation caches
+.cache/
+
+# Temporary test project folders
+*.testproj/
+
+# Failed tests create this file
+*.actual
