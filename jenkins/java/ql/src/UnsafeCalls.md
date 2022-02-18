@@ -8,4 +8,4 @@ This check identified one of several methods being invoked. Jenkins plugins gene
 * `javax.net.ssl.HttpsURLConnection#setHostnameVerifier`
 * `javax.net.ssl.HttpsURLConnection#setSSLSocketFactory`
 
-See the [documentation on misc APIs](https://www.jenkins.io/doc/developer/security/misc/).
+See the [documentation on misc APIs](https://www.jenkins.io/doc/developer/security/misc/) for recommendations.
