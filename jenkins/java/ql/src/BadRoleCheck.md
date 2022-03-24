@@ -10,7 +10,7 @@ As a result it could compromise security on Jenkins before 2.319 and LTS 2.303.3
 <!-- Generic section used in all findings -->
 
 1. Don't panic, even if this issue is present in previous plugin releases.
-   Do not change your code without understanding why the the finding appears.
+   Do not change your code without understanding why the finding appears.
    You may end up not fixing the problem, only hiding it instead.
 2. Determine whether this finding is a false positive (see guidance below).
    This is an automated scan result, so that's always a possibility.
