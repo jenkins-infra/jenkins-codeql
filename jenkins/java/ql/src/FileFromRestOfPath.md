@@ -16,7 +16,7 @@ If this finding is in a plugin hosted by the Jenkins project, you can also alway
 
 ## Is this a false positive?
 
-It's legitimate to use `#getRestOfPath` to access a file. `DirectoryBrowserSupport` and other classses in Jenkins (core) do that as well. However, the value needs to be carefully sanitized, or the code needs to reject any values that could be used for path traversal. If your code is already doing that, and this check just didn't identify that, great!
+It's legitimate to use `#getRestOfPath` to access a file. `DirectoryBrowserSupport` and other classes in Jenkins (core) do that as well. However, the value needs to be carefully sanitized, or the code needs to reject any values that could be used for path traversal. If your code is already doing that, and this check just didn't identify that, great!
 
 ## How can I fix the code?
 
