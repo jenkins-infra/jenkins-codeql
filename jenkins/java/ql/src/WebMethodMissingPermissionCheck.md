@@ -44,7 +44,7 @@ Side effects for the purpose of this check are any of of the following:
 
 ### Other methods of protection
 
-Stapler request routing does not require that each individual web method perform a permission check. A common solution if entire objects are intended to be protected from lower-privilege users is to implement `StaplerProxy` and use the `#getTarget` method to implement a permission check, returning `this` when it is successful.
+Stapler request routing does not require that each individual web method perform a permission check. A common solution, if entire objects are intended to be protected from lower-privilege users, is to implement `StaplerProxy` and use the `#getTarget` method to implement a permission check, returning `this` when it is successful.
 
 An example of this is [`AdministrativeMonitor`](https://github.com/jenkinsci/jenkins/blob/39fd38fd86d7e7cb0a13e32562d36d67ff52a5f9/core/src/main/java/hudson/model/AdministrativeMonitor.java#L198-L210), which is always only accessible to users with the specified permission. Individual web methods of this class or its subclasses do not need to have separate permission checks (unless additional permissions are required for some of them).
 
