@@ -1,7 +1,28 @@
-This check identified that one of the classes listed below is used. Use of these classes is potentially unsafe, usually due to bad defaults or inherent issues invoking these with user data.
-Care needs to be taken that use of these classes does not cause security issues. See the [documentation on misc APIs use in Jenkins](https://www.jenkins.io/doc/developer/security/misc/) for recommendations.
+This method uses one of several classes considered dangerous if used incorrectly.
 
-Using these classes with user-controlled input is generally unsafe:
+## Why is this a problem?
+
+Incorrect use of APIs can result in a security vulnerability.
+
+## Next Steps
+
+<!-- Generic section used in all findings -->
+
+1. Don't panic, even if this issue is present in previous plugin releases. Do not change your code without understanding why the finding appears. You may end up not fixing the problem, only hiding it instead.
+2. Determine whether this finding is a false positive (see guidance below). This is an automated scan result, so that's always a possibility. In general, the rules err on the side of caution, so false positives are pretty common. If it is a false positive, mark it as such on the GitHub UI and you're done!
+3. If this is a true positive finding, use the documentation below to resolve it.
+
+If this finding is in a plugin hosted by the Jenkins project, you can also always [contact the Jenkins Security Team via Jira or email](https://www.jenkins.io/security/#reporting-vulnerabilities) to ask for help in resolving this finding.
+
+## Is this a false positive?
+
+This check can easily identify _false positives_, i.e. safe code that is marked as being unsafe.
+
+Determine which of the listed classes are used by your code and review the argument for why this check detects them. If the problem being described does not apply to your code, you can ignore this finding.
+
+### Scripting APIs
+
+Using these scripting-related classes with user-controlled input is generally unsafe, unless steps have been taken to prevent arbitrary remote code execution:
 
 * `groovy.lang.GroovyShell`
 * `groovy.text.SimpleTemplateEngine`
@@ -12,9 +33,15 @@ Using these classes with user-controlled input is generally unsafe:
 * `org.apache.commons.jelly.GroovyShell`
 * `org.apache.commons.jelly.Script`
 
-XML processing can easily result in XXE vulnerabilities unless specifically disabled:
+### XML processing
+
+XML processing using the following classes can easily result in XXE vulnerabilities [unless steps have been taken to prevent them](https://cheatsheetseries.owasp.org/cheatsheets/XML_External_Entity_Prevention_Cheat_Sheet.html):
 
 * `hudson.util.Digester2`
 * `javax.xml.transform.TransformerFactory`
 * `org.apache.commons.digester.Digester`
 * `org.apache.commons.digester3.Digester`
+
+## How can I fix the code?
+
+See the [documentation on misc APIs](https://www.jenkins.io/doc/developer/security/misc/) for recommendations.
