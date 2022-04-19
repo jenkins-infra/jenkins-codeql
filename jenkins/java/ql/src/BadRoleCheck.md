@@ -2,8 +2,7 @@ This `Callable` implements `#checkRoles(RoleChecker)` without calling `RoleCheck
 
 ## Why is this a problem?
 
-This code may allow agent processes to execute code on the Jenkins controller.
-As a result it could compromise security on Jenkins before 2.319 and LTS 2.303.3.
+This code may allow agent processes to execute code on the Jenkins controller. As a result it could compromise security on Jenkins before 2.319 and LTS 2.303.3.
 
 ## Next Steps
 
