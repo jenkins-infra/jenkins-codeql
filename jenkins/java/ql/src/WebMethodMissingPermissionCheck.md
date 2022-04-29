@@ -2,7 +2,7 @@ This Stapler web method does not perform a permission check.
 
 ## Why is this a problem?
 
-This is problem if the method returns private information, or has side effects.
+This is problem if the method returns private information, or has side effects, as anyone with only basic access to Jenkins can access the web method directly.
 
 ## Next Steps
 
@@ -30,9 +30,7 @@ Anything a user would not usually be entitled to have access to without addition
 1. Information about the configuration of the system usually requires Overall/Manage, Overall/SystemRead, or Overall/Administer permission.
 2. Information about the configuration of a job usually requires Job/Configure or Job/ExtendedRead permission (although some information will be displayed to users with Job/Read permission -- and that information does not need further permission to access).
 
-As a rule of thumb, if a user with a given level of access can obtain the information through an intended UI or API, it's not a problem.
-It's also not a problem if a user could obtain the same information by reading the source code of the plugin (e.g. `doFill` methods providing a fixed list of combobox options).
-It's only a problem when direct browsing to URLs would reveal information they would not otherwise be able to access.
+As a rule of thumb, if a user with a given level of access can obtain the information through an intended UI or API, it's not a problem. It's also not a problem if a user could obtain the same information by reading the source code of the plugin (e.g. `doFill` methods providing a fixed list of combobox options). It's only a problem when direct browsing to URLs would reveal information they would not otherwise be able to access.
 
 ### What are side effects?
 

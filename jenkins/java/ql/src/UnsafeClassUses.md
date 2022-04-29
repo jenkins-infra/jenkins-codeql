@@ -1,5 +1,4 @@
-This check identified that one of the classes listed below is used. Use of these classes is potentially unsafe, usually due to bad defaults or inherent issues invoking these with user data.
-Care needs to be taken that use of these classes does not cause security issues. See the [documentation on misc APIs use in Jenkins](https://www.jenkins.io/doc/developer/security/misc/) for recommendations.
+This check identified that one of the classes listed below is used. Use of these classes is potentially unsafe, usually due to bad defaults or inherent issues invoking these with user data. Care needs to be taken that use of these classes does not cause security issues. See the [documentation on misc APIs use in Jenkins](https://www.jenkins.io/doc/developer/security/misc/) for recommendations.
 
 Using these classes with user-controlled input is generally unsafe:
 
