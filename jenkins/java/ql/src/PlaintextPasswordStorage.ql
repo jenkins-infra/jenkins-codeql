@@ -20,6 +20,8 @@ class StringField extends Field {
 
     predicate isProduction() {
         this.getCompilationUnit().getAbsolutePath().indexOf("src/main/java") != -1
+        or // support QL test sources
+        this.getCompilationUnit().getAbsolutePath().indexOf("test/query-tests") != -1
     }
 }
 
@@ -32,10 +34,11 @@ class StringCredentialField extends StringField {
         or this.getName().toLowerCase().indexOf("access") != -1
         or this.getName().toLowerCase().indexOf("key") != -1
         or this.getName().toLowerCase().indexOf("token") != -1)
-        and not (this.hasName("credentialsId")) // TODO there's something wrong with asserting indexOf = -1
+        and not (this.getName().toLowerCase().indexOf("credentialsid") != -1)
+        and not (this.getName().toLowerCase().indexOf("credentialid") != -1)
     }
 }
 
 from StringCredentialField m
 where m.fromSource() and m.isProduction()
-select m, "Variable should be reviewed whether it stored a password and is serialized to disk: " + m.getName()
+select m, "Field should be reviewed whether it stores a password and is serialized to disk: " + m.getName()
