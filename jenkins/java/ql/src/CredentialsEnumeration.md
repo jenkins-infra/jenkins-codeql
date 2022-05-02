@@ -2,7 +2,7 @@ This web method retrieves a list of credentials IDs without performing a permiss
 
 ## Why is this a problem?
 
-Knowledge of credentials IDs in Jenkins can help attackers retrieve credentials. While it's unavoidable to hide them entirely, lists should be returned only to authorized users.
+Knowledge of credentials IDs in Jenkins can help attackers retrieve credentials. While it's impossible to hide them entirely, lists should be returned only to authorized users.
 
 ## Next Steps
 
