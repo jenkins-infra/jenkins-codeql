@@ -25,7 +25,11 @@ Determine which of the listed classes are used by your code and review the argum
 Using these scripting-related classes with user-controlled input is generally unsafe, unless steps have been taken to prevent arbitrary remote code execution:
 
 * `groovy.lang.GroovyShell`
+* `groovy.text.GStringTemplateEngine`
 * `groovy.text.SimpleTemplateEngine`
+* `groovy.text.StreamingTemplateEngine`
+* `groovy.text.TemplateEngine`
+* `groovy.text.XmlTemplateEngine`
 * `groovy.util.GroovyScriptEngine`
 * `hudson.ExpressionFactory2`
 * `hudson.util.spring.BeanBuilder`

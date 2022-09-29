@@ -16,7 +16,11 @@ import declarations.ProductionCallable
 class UnsafeClass extends Class {
     UnsafeClass() {
         this.hasQualifiedName("groovy.lang", "GroovyShell")
+        or this.hasQualifiedName("groovy.text", "GStringTemplateEngine")
         or this.hasQualifiedName("groovy.text", "SimpleTemplateEngine")
+        or this.hasQualifiedName("groovy.text", "StreamingTemplateEngine")
+        or this.hasQualifiedName("groovy.text", "TemplateEngine")
+        or this.hasQualifiedName("groovy.text", "XmlTemplateEngine")
         or this.hasQualifiedName("groovy.util", "GroovyScriptEngine")
         or this.hasQualifiedName("hudson", "ExpressionFactory2")
         or this.hasQualifiedName("hudson.util.spring", "BeanBuilder")
