@@ -34,6 +34,7 @@ Using these scripting-related classes with user-controlled input is generally un
 * `hudson.ExpressionFactory2`
 * `hudson.util.spring.BeanBuilder`
 * `javaposse.jobdsl.dsl.DslScriptLoader`
+* `javax.script.ScriptEngineManager`
 * `org.apache.commons.jelly.GroovyShell`
 * `org.apache.commons.jelly.Script`
 

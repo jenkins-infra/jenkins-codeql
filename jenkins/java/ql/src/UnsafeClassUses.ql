@@ -25,6 +25,7 @@ class UnsafeClass extends Class {
         or this.hasQualifiedName("hudson", "ExpressionFactory2")
         or this.hasQualifiedName("hudson.util.spring", "BeanBuilder")
         or this.hasQualifiedName("javaposse.jobdsl.dsl", "DslScriptLoader")
+        or this.hasQualifiedName("javax.script", "ScriptEngineManager")
         or this.hasQualifiedName("javax.xml.transform", "TransformerFactory")
         or this.hasQualifiedName("org.apache.commons.digester", "Digester")
         or this.hasQualifiedName("org.apache.commons.digester3", "Digester")
