@@ -2,6 +2,7 @@ name: jenkinsci/java-tests
 groups: [java, test]
 dependencies:
   codeql/java-all: 0.4.2
-  jenkinsci/java: "*"
+  jenkinsci/java-lib: "*"
+  jenkinsci/java-queries: "*"
 extractor: java
 tests: .

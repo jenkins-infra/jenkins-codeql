@@ -1,6 +1,7 @@
 ---
 library: false
-name: jenkinsci/java
+name: jenkinsci/java-queries
 version: 0.0.1
 dependencies:
   codeql/java-all: 0.4.2
+  jenkinsci/java-lib: '*'
