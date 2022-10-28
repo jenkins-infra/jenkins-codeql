@@ -1,3 +1,6 @@
-name: jenkins-java
-version: 0.0.0
-libraryPathDependencies: codeql-java
+---
+library: false
+name: jenkinsci/java
+version: 0.0.1
+dependencies:
+  codeql/java-all: 0.4.2

@@ -1,5 +1,7 @@
-name: jenkins-java-tests
-version: 0.0.0
-libraryPathDependencies: jenkins-java
+name: jenkinsci/java-tests
+groups: [java, test]
+dependencies:
+  codeql/java-all: 0.4.2
+  jenkinsci/java: "*"
 extractor: java
 tests: .
