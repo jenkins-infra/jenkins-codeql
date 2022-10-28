@@ -11,6 +11,9 @@ This repository contains Jenkins-specific CodeQL queries.
 
     codeql pack test run test/
 
+The file `run-tests.sh` in this repository is a self-contained script that installs CodeQL, pack dependencies, and then runs the tests.
+Since it downloads and extracts CodeQL CLI binaries, its use is not recommended for local development.
+
 ### Run queries against database
 
 First, [generate or download a CodeQL database](https://codeql.github.com/docs/codeql-cli/creating-codeql-databases/) for the code base you want to run the queries against.
