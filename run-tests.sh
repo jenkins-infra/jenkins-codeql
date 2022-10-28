@@ -14,20 +14,20 @@ TMPDIR="$( mktemp -d -t 'jenkins-codeql-tests.XXX' )"
 echo "Using temp dir $TMPDIR ..." >&2
 cd "$TMPDIR"
 
-echo "Downloading CodeQL ..." >&2
+echo "Downloading CodeQL CLI ..." >&2
 curl --location --silent --fail --output codeql.zip "https://github.com/github/codeql-cli-binaries/releases/download/v2.11.2/codeql-${OS}.zip"
 
-echo "Extracting CodeQL ..." >&2
+echo "Extracting CodeQL CLI ..." >&2
 unzip -q codeql.zip # Into codeql/ directory
 
 export PATH="$PATH:$PWD/codeql/"
 
 cd - >/dev/null
 
-echo "Downloading dependencies ..." >&2
+echo "Downloading query pack dependencies ..." >&2
 codeql pack install test/
 
-echo "Running tests ..." >&2
+echo "Running query tests ..." >&2
 codeql test run test/
 
 # TODO this doesn't run when tests fail, but perhaps useful for debug?
