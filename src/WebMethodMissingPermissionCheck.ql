@@ -12,9 +12,9 @@
  */
 
 import java
-import declarations.NonTrivialInvocation
-import declarations.WebMethod
-import declarations.PermissionCheck
+import jenkins.NonTrivialInvocation
+import jenkins.PermissionCheck
+import stapler.WebMethod
 
 from WebMethod m
 where

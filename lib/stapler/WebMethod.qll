@@ -1,6 +1,6 @@
 import java
 
-import ProductionCallable
+import jenkins.ProductionCallable
 
 class WebMethod extends Method, ProductionCallable {
     WebMethod() {

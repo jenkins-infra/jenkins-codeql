@@ -11,7 +11,7 @@
  */
 
 import java
-import declarations.ProductionCallable
+import jenkins.ProductionCallable
 
 class UnsafeClass extends Class {
     UnsafeClass() {

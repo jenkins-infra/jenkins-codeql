@@ -12,8 +12,8 @@
  */
 
 import java
-import declarations.NonTrivialInvocation
-import declarations.WebMethod
+import jenkins.NonTrivialInvocation
+import stapler.WebMethod
 
 class AnyVerbAnnotation extends Annotation {
   AnyVerbAnnotation() {
