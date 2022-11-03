@@ -12,7 +12,7 @@
  */
 
 import java
-import declarations.ProductionCallable
+import jenkins.ProductionCallable
 
 class RoleChecker extends Class {
     RoleChecker() { this.hasQualifiedName("org.jenkinsci.remoting", "RoleChecker") }

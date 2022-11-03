@@ -1,5 +1,0 @@
-name: jenkins-java-tests
-version: 0.0.0
-libraryPathDependencies: jenkins-java
-extractor: java
-tests: .

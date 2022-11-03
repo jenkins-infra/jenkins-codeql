@@ -6,3 +6,7 @@
 
 # Failed tests create this file
 *.actual
+
+# IntelliJ
+*.iml
+/.idea/

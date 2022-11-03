@@ -13,8 +13,8 @@
  */
 
 import java
-import declarations.WebMethod
-import declarations.PermissionCheck
+import jenkins.PermissionCheck
+import stapler.WebMethod
 
 class CredentialsLookup extends Method {
     CredentialsLookup() {
