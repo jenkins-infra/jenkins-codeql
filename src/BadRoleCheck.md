@@ -26,4 +26,4 @@ If the `Callable` is always invoked locally, it should extend `NotReallyRoleSens
 
 If the `Callable` is potentially sent from the controller to agents, it should extend `MasterToSlaveCallable` and stop overriding `#checkRoles`.
 
-In very rare cases, the `Callable` needs to be sent from an agent to the controller. More work is needed to ensure this is done safely. See the [developer guide for remoting callabes](https://www.jenkins.io/doc/developer/security/remoting-callables/) for more information.
+In very rare cases, the `Callable` needs to be sent from an agent to the controller. More work is needed to ensure this is done safely. See the [developer guide for remoting callables](https://www.jenkins.io/doc/developer/security/remoting-callables/) for more information.
