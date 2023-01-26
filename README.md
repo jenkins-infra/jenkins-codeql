@@ -23,28 +23,3 @@ Then, run:
     codeql database codeql database analyze --format=sarifv2.1.0 --output=result.sarif <path to database> src/
 
 This will generate the `result.sarif` file containing the query results.
-
-### Suppress warnings
-
-It is possible to suppress false-positives programatically using inline comments or `java.lang.SuppressWarnings` annotation.
-
-To suppress all kinds of warnings at once using:
-```
-// lgtm
-```
-To suppress a specific kind of warning put the warning `id` inside square brackets:
-```
-// lgtm[jenkins/callable-without-role-check]
-```
-or
-```
-@SuppressWarnings("lgtm[jenkins/callable-without-role-check]")
-```
-To suppress multiple kinds of warnings:
-```
-// lgtm[jenkins/no-permission-check], lgtm[jenkins/csrf]
-```
-or
-```
-@SuppressWarnings({"jenkins/no-permission-check", "jenkins/csrf"})
-```
