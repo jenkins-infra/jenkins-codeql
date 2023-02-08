@@ -1,7 +1,7 @@
 name: jenkinsci/java-tests
 groups: [java, test]
 dependencies:
-  codeql/java-all: 0.4.2
+  codeql/java-all: 0.5.2 # https://github.com/github/codeql/blob/main/java/ql/src/CHANGELOG.md
   jenkinsci/java-lib: "*"
   jenkinsci/java-queries: "*"
 extractor: java

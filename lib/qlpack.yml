@@ -3,4 +3,4 @@ library: true
 name: jenkinsci/java-lib
 version: 0.0.1
 dependencies:
-  codeql/java-all: 0.4.2
+  codeql/java-all: 0.5.2 # https://github.com/github/codeql/blob/main/java/ql/src/CHANGELOG.md
