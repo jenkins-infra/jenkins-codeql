@@ -24,23 +24,24 @@ At a minimum, this line of code would need to be removed if there's no need for 
 ## How can I fix the code?
 
 If your current code looks like this:
-
-    Jenkins.get().hasPermission(Jenkins.ADMINISTER)
-
+```java
+Jenkins.get().hasPermission(Jenkins.ADMINISTER)
+```
 Change it to this:
-
-    Jenkins.get().checkPermission(Jenkins.ADMINISTER)
-
+```java
+Jenkins.get().checkPermission(Jenkins.ADMINISTER)
+```
 Alternatively, to get a non-default behavior (throwing an exception), depending on the context of this code, you could do something like this:
 
 In form validation (typically in methods called `#doCheckFieldname`):
-
-    if (!Jenkins.get().hasPermission(Jenkins.ADMINISTER)) {
-        return FormValidation.ok();
-    }
-
+```java
+if (!Jenkins.get().hasPermission(Jenkins.ADMINISTER)) {
+    return FormValidation.ok();
+}
+```
 In methods providing values for selection menus (typically methods called `#doFillFieldname`):
-
-    if (!Jenkins.get().hasPermission(Jenkins.ADMINISTER)) {
-        return new ListBoxModel();
-    }
+```java
+if (!Jenkins.get().hasPermission(Jenkins.ADMINISTER)) {
+    return new ListBoxModel();
+}
+```

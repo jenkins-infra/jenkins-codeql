@@ -1,3 +1,6 @@
+# CodeQL
+.codeql/
+
 # CodeQL compilation caches
 .cache/
 

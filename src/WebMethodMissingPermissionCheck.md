@@ -60,17 +60,16 @@ This check identifies methods matching the Stapler web method naming scheme (e.g
 You generally want to add a permission check to the method. Broadly speaking, there are two strategies:
 
 Calling `#checkPermission` will throw an exception if the current user does not have the specified permission:
-
-    Jenkins.get().checkPermission(Jenkins.ADMINISTER)
-
+```java
+Jenkins.get().checkPermission(Jenkins.ADMINISTER)
+```
 Calling `#hasPermission` will return whether the current user has the specified permission and can be used to customize the response, like a form validation not performing actions with side effects:
-
-
-    public FormValidation doCheckUrl(@QueryParameter String value) {
-        if (!Jenkins.get().hasPermission(Jenkins.ADMINISTER)) {
-            return FormValidation.ok();
-        }
-        // Ensure 'value' is a valid URL actually pointing to the service being configured
+```java
+public FormValidation doCheckUrl(@QueryParameter String value) {
+    if (!Jenkins.get().hasPermission(Jenkins.ADMINISTER)) {
+        return FormValidation.ok();
     }
-
+    // Ensure 'value' is a valid URL actually pointing to the service being configured
+}
+```
 For further information, see [the documentation on safely implementing form validation](https://www.jenkins.io/doc/developer/security/form-validation/). Despite the name, it applies to more than just form validation.
