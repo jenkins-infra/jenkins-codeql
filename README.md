@@ -4,6 +4,37 @@ This repository contains Jenkins-specific CodeQL queries.
 
 ## Usage
 
+### Use in a regular CodeQL Action
+
+These instructions assume use of the [standard CodeQL workflow template](https://github.com/actions/starter-workflows/blob/main/code-scanning/codeql.yml) as of [`b1df8a5`](https://github.com/actions/starter-workflows/blob/b1df8a546ed4d0f27d46aaf2f8ac1118bc522638/code-scanning/codeql.yml)
+
+Update your use of `github/codeql-action/init@v2` to specify a `with.config` ([related GitHub documentation](https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning#specifying-codeql-query-packs)).
+
+#### Add Jenkins-specific queries in addition to CodeQL
+
+```yaml
+with:
+  config: |
+    packs:
+    - jenkins-infra/jenkins-codeql
+```
+
+#### Only run Jenkins-specific queries (like Jenkins Security Scan)
+
+```yaml
+with:
+  config: |
+    disable-default-queries: true
+    packs:
+    - jenkins-infra/jenkins-codeql
+```
+
+### Jenkins Security Scan GitHub Workflow
+
+See the [Jenkins Security Scan documentation on jenkins.io](https://www.jenkins.io/redirect/jenkins-security-scan/).
+
+### Basic use
+
 1. Install the [CodeQL CLI](https://github.com/github/codeql-cli-binaries/releases).
 2. Run `codeql pack install test/` to install the dependencies.
 
