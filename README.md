@@ -4,13 +4,25 @@ This repository contains Jenkins-specific CodeQL queries.
 
 ## Usage
 
-### Use in a regular CodeQL Action
+These CodeQL queries can be used in different ways.
+
+### Use in a regular CodeQL workflow
+
+Use the Jenkins CodeQL queries as part of the regular CodeQL code scanning workflow.
+This is the more flexible approach in terms of your ability to configure the build, and additionally only requires one workflow to be set up to use the generic code scanning rules provided by GitHub in addition to the Jenkins-specific rules.
+
+Please note the following limitations of this approach:
+
+- The findings will be part of the "CodeQL" tool.
+- Suppressing findings through annotations in source code is unsupported.
+
+#### Setting up
 
 These instructions assume use of the [standard CodeQL workflow template](https://github.com/actions/starter-workflows/blob/main/code-scanning/codeql.yml) as of [`b1df8a5`](https://github.com/actions/starter-workflows/blob/b1df8a546ed4d0f27d46aaf2f8ac1118bc522638/code-scanning/codeql.yml)
 
 Update your use of `github/codeql-action/init@v2` to specify a `with.config` ([related GitHub documentation](https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning#specifying-codeql-query-packs)).
 
-#### Add Jenkins-specific queries in addition to CodeQL
+##### Add Jenkins-specific queries in addition to CodeQL
 
 ```yaml
 with:
@@ -19,7 +31,7 @@ with:
     - jenkins-infra/jenkins-codeql
 ```
 
-#### Only run Jenkins-specific queries (like Jenkins Security Scan)
+##### Only run Jenkins-specific queries (like Jenkins Security Scan)
 
 ```yaml
 with:
