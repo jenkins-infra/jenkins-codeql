@@ -25,6 +25,8 @@ Then, run:
 
 This will generate the `result.sarif` file containing the query results.
 
+## Development
+
 ### Update CodeQL
 
 To update to a newer CodeQL release:
