@@ -24,3 +24,14 @@ Then, run:
     codeql database codeql database analyze --format=sarifv2.1.0 --output=result.sarif <path to database> src/
 
 This will generate the `result.sarif` file containing the query results.
+
+### Update CodeQL
+
+To update to a newer CodeQL release:
+
+1. Determine which release to update to. See [the list of CodeQL releases](https://github.com/github/codeql-cli-binaries/releases) and [the corresponding releases of `java-all`](https://github.com/github/codeql/blob/main/java/ql/src/CHANGELOG.md).
+2. Edit all `qlpack.yml` files and increase the version of `codeql/java-all` to the corresponding version in .
+3. Run `codeql pack upgrade <dir>` on each of the directories containing a `qlpack.yml` file.
+4. Edit `run-tests.sh` to download the correct CodeQL release and run it to confirm everything works as expected.
+
+NOTE: https://github.com/jenkins-infra/jenkins-security-scan needs a corresponding change.
