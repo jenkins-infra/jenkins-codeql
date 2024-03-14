@@ -10,17 +10,14 @@ These CodeQL queries can be used in different ways.
 
 Use the Jenkins CodeQL queries as part of the regular CodeQL code scanning workflow.
 This is the more flexible approach in terms of your ability to configure the build, and additionally only requires one workflow to be set up to use the generic code scanning rules provided by GitHub in addition to the Jenkins-specific rules.
-
-Please note the following limitations of this approach:
-
-- The findings will be part of the "CodeQL" tool.
-- Suppressing findings through annotations in source code is unsupported.
+Please note the findings will be reported part of the "CodeQL" code scanning tool on the GitHub UI.
+Additionally, code-level suppressions do not work.
 
 #### Setting up
 
-These instructions assume use of the [standard CodeQL workflow template](https://github.com/actions/starter-workflows/blob/main/code-scanning/codeql.yml) as of [`b1df8a5`](https://github.com/actions/starter-workflows/blob/b1df8a546ed4d0f27d46aaf2f8ac1118bc522638/code-scanning/codeql.yml)
+These instructions assume use of the [standard CodeQL workflow template](https://github.com/actions/starter-workflows/blob/main/code-scanning/codeql.yml) as of [`42326d0`](https://github.com/actions/starter-workflows/blob/42326d080464485184a7a63431593b327a1c2e3b/code-scanning/codeql.yml)
 
-Update your use of `github/codeql-action/init@v2` to specify a `with.config` ([related GitHub documentation](https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning#specifying-codeql-query-packs)).
+Update your use of `github/codeql-action/init@v3` to specify a `with.config` ([related GitHub documentation](https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning#specifying-codeql-query-packs)).
 
 ##### Add Jenkins-specific queries in addition to CodeQL
 
@@ -45,22 +42,14 @@ with:
 
 See the [Jenkins Security Scan documentation on jenkins.io](https://www.jenkins.io/redirect/jenkins-security-scan/).
 
-### Basic use
+### Basic local/standalone use
 
 1. Install the [CodeQL CLI](https://github.com/github/codeql-cli-binaries/releases).
 2. Run `codeql pack install test/` to install the dependencies.
 
-### Run tests
+#### Run Jenkins queries against a CodeQL database
 
-    codeql pack install test/
-    codeql test run test/
-
-The file `run-tests.sh` in this repository is a self-contained script that installs CodeQL, pack dependencies, and then runs the tests.
-Since it downloads and extracts CodeQL CLI binaries, its use is not recommended for local development.
-
-### Run queries against database
-
-First, [generate or download a CodeQL database](https://codeql.github.com/docs/codeql-cli/creating-codeql-databases/) for the code base you want to run the queries against.
+[Generate or download a CodeQL database](https://codeql.github.com/docs/codeql-cli/creating-codeql-databases/) for the code base you want to run the queries against.
 
 Then, run:
 
@@ -69,6 +58,14 @@ Then, run:
 This will generate the `result.sarif` file containing the query results.
 
 ## Development
+
+### Run tests
+
+    codeql pack install test/
+    codeql test run test/
+
+The file `run-tests.sh` in this repository is a self-contained script that installs CodeQL, pack dependencies, and then runs the tests.
+Since it downloads and extracts CodeQL CLI binaries, its use is not recommended for local development.
 
 ### Update CodeQL
 
