@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+CODEQL_VERSION=2.16.4
+
 set -o errexit
 set -o nounset
 set -o pipefail
@@ -15,7 +17,7 @@ echo "Using temp dir $TMPDIR ..." >&2
 cd "$TMPDIR"
 
 echo "Downloading CodeQL CLI ..." >&2
-curl --location --silent --fail --output codeql.zip "https://github.com/github/codeql-cli-binaries/releases/download/v2.15.1/codeql-${OS}.zip"
+curl --location --silent --fail --output codeql.zip "https://github.com/github/codeql-cli-binaries/releases/download/v$CODEQL_VERSION/codeql-${OS}.zip"
 
 echo "Extracting CodeQL CLI ..." >&2
 unzip -q codeql.zip # Into codeql/ directory

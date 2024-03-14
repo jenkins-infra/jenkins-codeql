@@ -15,7 +15,7 @@ import semmle.code.java.dataflow.TaintTracking
 
 class RestOfPathSource extends DataFlow::ExprNode {
     RestOfPathSource() {
-        exists(Method m | m = this.asExpr().(MethodAccess).getMethod() |
+        exists(Method m | m = this.asExpr().(MethodCall).getMethod() |
             m.hasName("getRestOfPath")
             //and m.getDeclaringType() instanceof TBD
         )
@@ -30,12 +30,13 @@ class FileSink extends DataFlow::ExprNode {
   }
 }
 
-class RestOfPathToFileConfiguration extends TaintTracking::Configuration {
-  RestOfPathToFileConfiguration() { this = "RestOfPathToFileConfiguration" }
-  override predicate isSource(DataFlow::Node source) { source instanceof RestOfPathSource }
-  override predicate isSink(DataFlow::Node sink) { sink instanceof FileSink }
+module RestOfPathToFile implements DataFlow::ConfigSig {
+  predicate isSource(DataFlow::Node source) { source instanceof RestOfPathSource }
+  predicate isSink(DataFlow::Node sink) { sink instanceof FileSink }
 }
 
-from DataFlow::Node source, DataFlow::Node sink, RestOfPathToFileConfiguration config
-where config.hasFlow(source, sink)
+module Flow = TaintTracking::Global<RestOfPathToFile>;
+
+from DataFlow::Node source, DataFlow::Node sink
+where Flow::flow(source, sink)
 select  source, "A file is created from #getRestOfPath, potential path traversal vulnerability $@.", sink, "here"
