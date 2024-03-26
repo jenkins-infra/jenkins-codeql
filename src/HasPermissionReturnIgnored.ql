@@ -11,7 +11,7 @@
 
 import java
 
-from MethodAccess unchecked, Method m
+from MethodCall unchecked, Method m
 where unchecked.getMethod() = m and m.hasName("hasPermission")
   and unchecked.getParent() instanceof ExprStmt
 select unchecked, "The result of the call is ignored"
