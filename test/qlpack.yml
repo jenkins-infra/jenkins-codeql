@@ -1,5 +1,6 @@
 name: jenkins-infra/java-tests
 groups: [java, test]
+license: MIT
 dependencies:
   codeql/java-all: 0.8.1 # https://github.com/github/codeql/blob/main/java/ql/src/CHANGELOG.md
   jenkins-infra/jenkins-codeql-lib: "*"
