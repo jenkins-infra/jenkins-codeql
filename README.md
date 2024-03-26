@@ -4,14 +4,15 @@ This repository contains Jenkins-specific CodeQL queries.
 
 ## Usage
 
-These CodeQL queries can be used in different ways.
-
 ### Use in a regular CodeQL workflow
 
-Use the Jenkins CodeQL queries as part of the regular CodeQL code scanning workflow.
+You can use the Jenkins CodeQL queries as part of the regular CodeQL code scanning workflow.
 This is the more flexible approach in terms of your ability to configure the build, and additionally only requires one workflow to be set up to use the generic code scanning rules provided by GitHub in addition to the Jenkins-specific rules.
 Please note the findings will be reported part of the "CodeQL" code scanning tool on the GitHub UI.
-Additionally, code-level suppressions do not work.
+
+Additionally, code-level suppressions documented as part of finding descriptions do not work by default.
+See [`advanced-security/dismiss-alerts`](https://github.com/advanced-security/dismiss-alerts/) for a GitHub-provided way to support code-level suppression.
+The instructions below do not add suppression support, see `advanced-security/dismiss-alerts` for the necessary configuration changes.
 
 #### Setting up
 
