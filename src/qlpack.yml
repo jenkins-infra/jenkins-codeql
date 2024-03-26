@@ -1,7 +1,7 @@
 ---
 library: false
 name: jenkins-infra/jenkins-codeql
-version: 0.0.2-dev
+version: 0.0.2
 license: MIT
 dependencies:
   codeql/java-all: 0.8.10
