@@ -32,7 +32,7 @@ This will generate the `result.sarif` file containing the query results.
 To update to a newer CodeQL release:
 
 1. Determine which release to update to. See [the list of CodeQL releases](https://github.com/github/codeql-cli-binaries/releases) and [the corresponding releases of `java-all`](https://github.com/github/codeql/blob/main/java/ql/src/CHANGELOG.md).
-2. Edit all `qlpack.yml` files and increase the version of `codeql/java-all` to the corresponding version in .
+2. Edit all `qlpack.yml` files in this repository and increase the version of `codeql/java-all` to the corresponding version in `github/codeql` (`java/ql/src/qlpack.yml` at the tagged top-level version in [tags](https://github.com/github/codeql/tags).
 3. Run `codeql pack upgrade <dir>` on each of the directories containing a `qlpack.yml` file.
 4. Edit `run-tests.sh` to download the correct CodeQL release and run it to confirm everything works as expected.
 
