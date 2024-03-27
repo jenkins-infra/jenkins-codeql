@@ -78,3 +78,13 @@ To update to a newer CodeQL release:
 4. Edit `run-tests.sh` to download the correct CodeQL release and run it to confirm everything works as expected.
 
 NOTE: https://github.com/jenkins-infra/jenkins-security-scan needs a corresponding change.
+
+### Release as CodeQL Pack
+
+To release this as QL packs [here](https://github.com/orgs/jenkins-infra/packages):
+
+1. Update the versions from `x.y.z-dev` to `x.y.z` in `qlpack.yml` files and `git commit` this ([example](https://github.com/jenkins-infra/jenkins-codeql/commit/1948ae5d3f4e8fdd6c3744d543ba2575a738a8a1)).
+2. Define the environment variable `GITHUB_TOKEN` or prepare to pass the argument `--github-auth-stdin` to the next command.
+   Either way, you need a token with `write:packages` permission.
+3. Run `codeql pack publish --groups=-test` to upload everything but the tests as packs.
+4. Update the versions from `x.y.z` to `x.y.(z+1)-dev` in `qlpack.yml` files and `git commit` this ([example](https://github.com/jenkins-infra/jenkins-codeql/commit/d96d4f54cf0a7be75e89144aca88cde76ac61d50)).
