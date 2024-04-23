@@ -12,7 +12,7 @@ Incorrect use of APIs can result in a security vulnerability.
 2. Determine whether this finding is a false positive (see guidance below). This is an automated scan result, so that's always a possibility. In general, the rules err on the side of caution, so false positives are pretty common. If it is a false positive, do either of the following, and you're done!
     * [Mark it as such on the GitHub UI](https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/managing-code-scanning-alerts-for-your-repository#dismissing--alerts)
     * Suppress the finding through a simple code change:
-      Annotate the code location with `@SuppressWarnings("lgtm[jenkins/credentials-fill-without-permission-check]")` or add this comment just before: `// lgtm[jenkins/credentials-fill-without-permission-check]`.
+      Annotate the code location with `@SuppressWarnings("lgtm[jenkins/unsafe-classes]")` or add this comment just before: `// lgtm[jenkins/unsafe-classes]`.
       This is supported when using the Jenkins Security Scan workflow and in other CodeQL scans that support suppressing findings this way.
 3. If this is a true positive finding, use the documentation below to resolve it.
 
