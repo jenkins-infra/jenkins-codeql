@@ -49,6 +49,7 @@ See the https://www.jenkins.io/redirect/jenkins-security-scan/[Jenkins Security 
 
 1. Install the https://github.com/github/codeql-cli-binaries/releases[CodeQL CLI].
 2. Run `codeql pack install test/` to install the dependencies.
+3. Run the desired `codeql` commands.
 
 ==== Run Jenkins queries against a CodeQL database
 
@@ -59,6 +60,55 @@ Then, run:
     codeql database codeql database analyze --format=sarifv2.1.0 --output=result.sarif <path to database> src/
 
 This will generate the `result.sarif` file containing the query results.
+
+==== Self-contained script
+
+The following shell script creates a database by running the specified build command, analyzes the database with the specified queries only, and then uploads the results, excluding any suppressed findings, to GitHub.
+
+[source,bash]
+----
+#!/usr/bin/env bash
+set -e errexit
+set -e nounset
+set -e pipefail
+[[ -f pom.xml ]] || { echo "This script must be run from a Maven project directory" ; exit 1 ; }
+[[ -v "GITHUB_TOKEN" ]] || { echo "GITHUB_TOKEN is undefined. " ; exit 1 ; }  # <1>
+[[ -v "GH_REPO" ]] || { echo "GH_REPO is undefined" ; exit 1 ; }              # <2>
+[[ -v "GH_REF" ]] || { echo "GH_REF is undefined." ; exit 1 ; }               # <3>
+[[ -v "GH_SHA" ]] || { echo "GH_SHA is undefined." ; exit 1 ; }               # <4>
+for TOOL in codeql jq mvn ; do
+    which "$TOOL" >/dev/null || { echo "$TOOL not found on PATH" ; exit 1 ; }
+done
+TEMPDIR="$( mktemp -d -t jenkins-codeql.XXXX )"
+codeql database create "$TEMPDIR"/codeql-java-database \
+  --language=java \
+  --command='mvn clean verify -Pquick-build'                                  # <5>
+codeql database analyze "$TEMPDIR"/codeql-java-database \
+  --sarif-add-query-help \
+  --format=sarif-latest \
+  --output="$TEMPDIR"/result.sarif \
+  --download \
+  jenkins-infra/jenkins-codeql \                                                <6>
+  codeql/java-queries:AlertSuppression.ql \
+  codeql/java-queries:AlertSuppressionAnnotations.ql \
+  || { echo "Failed to analyze database" ; exit 1 ; }
+jq 'del(.runs[].results[] | select( .suppressions | length != 0 ))' \
+  "$TEMPDIR"/result.sarif > "$TEMPDIR"/result-filtered.sarif                  # <7>
+echo codeql github upload-results \
+  --repository="$GH_REPO" \
+  --ref="$GH_REF" --commit="$GH_SHA" \
+  --sarif="$TEMPDIR"/result-filtered.sarif
+# Optionally:
+# rm -rf "$TEMPDIR"
+----
+<1> `GITHUB_TOKEN` is used by `codeql github upload-results`. Alternatively, a token can be passed into standard input with `--github-auth-stdin` argument.
+<2> `GH_REPO` must be in the format `owner/repo` (e.g., `jenkinsci/matrix-auth-plugin`).
+<3> `GH_REF` must be in the format `refs/heads/branchname` (e.g., `refs/heads/develop`) when analyzing a branch, or `refs/pull/1234/head` (when analyzing a pull request's HEAD commit).
+<4> `GH_SHA` is the SHA-1 of the analyzed commit.
+<5> Optionally, `--command` specifies how the Jenkins component is built. This is useful if a custom build command should be used.
+<6> Replace `jenkins-infra/jenkins-codeql` with `/path/to/clone-of-this-repo/src/` to use locally modified sources.
+<7> Optionally, this invocation of `jq` removes all results from the report that have suppressions applied (through comments or annotations).
+
 
 == Development
 
