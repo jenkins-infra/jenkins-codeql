@@ -27,7 +27,9 @@ class WebMethod extends Method, ProductionCallable {
             and
             (
                 not p.getType().hasName("StaplerRequest")
+                and not p.getType().hasName("StaplerRequest2")
                 and not p.getType().hasName("StaplerResponse")
+                and not p.getType().hasName("StaplerResponse2")
                 and not p.getType().hasName("HttpServletRequest")
                 and not p.getType().hasName("HttpServletResponse")
                 and not p.getType().hasName("ServletRequest")
