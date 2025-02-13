@@ -16,7 +16,7 @@ The instructions below do not add suppression support, see `advanced-security/di
 
 ==== Setting up
 
-These instructions assume use of the https://github.com/actions/starter-workflows/blob/main/code-scanning/codeql.yml[standard CodeQL workflow template] as of https://github.com/actions/starter-workflows/blob/42326d080464485184a7a63431593b327a1c2e3b/code-scanning/codeql.yml[`42326d0`]
+These instructions assume use of the https://github.com/actions/starter-workflows/blob/main/code-scanning/codeql.yml[standard CodeQL workflow template] as of https://github.com/actions/starter-workflows/blob/42326d080464485184a7a63431593b327a1c2e3b/code-scanning/codeql.yml[`42326d0`].
 
 Update your use of `github/codeql-action/init@v3` to specify a `with.config` (https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/customizing-your-advanced-setup-for-code-scanning#specifying-codeql-query-packs[related GitHub documentation]).
 
@@ -79,8 +79,6 @@ To update to a newer CodeQL release:
 3. Run `codeql pack upgrade <dir>` on each of the directories containing a `qlpack.yml` file.
 4. Edit `run-tests.sh` to download the correct CodeQL release and run it to confirm everything works as expected.
 
-NOTE: https://github.com/jenkins-infra/jenkins-security-scan needs a corresponding change.
-
 === Release as CodeQL Pack
 
 To release this as QL packs https://github.com/orgs/jenkins-infra/packages[here]:
@@ -90,3 +88,5 @@ To release this as QL packs https://github.com/orgs/jenkins-infra/packages[here]
    Either way, you need a token with `write:packages` permission.
 3. Run `codeql pack publish --groups=-test` to upload everything but the tests as packs.
 4. Update the versions from `x.y.z` to `x.y.(z+1)-dev` in `qlpack.yml` files and `git commit` this (https://github.com/jenkins-infra/jenkins-codeql/commit/d96d4f54cf0a7be75e89144aca88cde76ac61d50[example]).
+
+Once a new release is published, file a pull request to update https://github.com/jenkins-infra/jenkins-security-scan/blob/main/.github/workflows/jenkins-security-scan.yaml[Jenkins Security Scan].
